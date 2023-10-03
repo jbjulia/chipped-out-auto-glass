@@ -78,6 +78,7 @@ def form_submit():
         f"Message: {message}\n\n"
         f"State: {state}\n"
         f"Phone Number: {phone_number}\n"
+        f"Email: {user_email}\n"
         f"Allow Advertising: {'Yes' if allow_advertising else 'No'}\n"
         f"Vehicle Info:\n{vehicle_info}"
     )
