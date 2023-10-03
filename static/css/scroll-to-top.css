@@ -1,0 +1,29 @@
+html {
+    scroll-behavior: smooth;
+}
+
+#scroll-to-top {
+    background-color: #ADD8E6;
+    width: 44px;
+    height: 40px;
+    position: fixed;
+    bottom: 65px;
+    right: 25px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+#scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#scroll-to-top i {
+    color: #fff;
+    font-size: 22px;
+    line-height: 44px;
+}

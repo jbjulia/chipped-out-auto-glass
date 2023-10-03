@@ -1,0 +1,78 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Environment variables
+.env
+
+# Flask instance folder
+instance/
+
+# Pytest cache
+.pytest_cache/
+
+# Jupyter Notebook files
+.ipynb_checkpoints
+
+# Databases
+*.db
+*.sqlite
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Virtual environment
+venv/
+*.venv
+.venv/
+ENV/
+env/
+
+# IDE generated files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.deploy/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+
+# Others
+*.bak
+*.csv
+*.dat
+*.json
+*.tar.gz
+*.zip
+
+# Node modules for frontend if applicable
+node_modules/

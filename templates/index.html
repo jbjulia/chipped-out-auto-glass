@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
+    <title>Chipped Out Auto Glass</title>
+    <meta content="Chipped Out Auto Glass" name="twitter:title">
+    <meta content="summary" name="twitter:card">
+    <meta content="website" property="og:type">
+    <meta content="Got a chip? Don't trip." name="description">
+    <meta content="https://chippedoutglass.com/static/img/chipped-out-auto-glass.webp" property="og:image">
+    <meta content="https://chippedoutglass.com/static/img/chipped-out-auto-glass.webp" name="twitter:image">
+    <meta content="Got a chip? Don't trip." name="twitter:description">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Chipped Out Auto Glass",
+            "url": "https://chippedoutglass.com"
+        }
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ site_key }}"></script>
+    <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/broken-glass.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/buttons.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/flash-message.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/footer.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/headings.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/hero.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/icons.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/navbar.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/price-cards.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/scroll-to-top.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/service-cards.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='fonts/fontawesome-all.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='img/chipped-out-auto-glass.webp') }}" rel="stylesheet">
+<body>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="flash-messages {{ category }}">
+    <div class="flash-message">
+        {{ message }}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<div id="brokenGlassContainer">
+    <canvas id="brokenGlassCanvas"></canvas>
+</div>
+<div class="modal fade" id="contact" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cracked today, clear tomorrow.</h4>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center text-muted">Please allow us 2-3 business days to respond.</p>
+                <form action="/form" method="post">
+                    <div class="mb-3">
+                        <label for="name-2"></label>
+                        <input class="form-control" id="name-2" name="name" placeholder="Name" type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email-2"></label>
+                        <input class="form-control" id="email-2" name="email" placeholder="Email" type="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="state-2"></label>
+                        <input class="form-control" id="state-2" name="state" placeholder="State" type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label for="license-plate"></label>
+                        <input class="form-control" id="license-plate" name="license-plate" placeholder="License Plate"
+                               type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone-number"></label>
+                        <input class="form-control" id="phone-number" name="phone-number" placeholder="Phone Number"
+                               type="tel">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input class="form-check-input" id="allow-advertising" name="allow-advertising" type="checkbox">
+                        <label class="form-check-label" for="allow-advertising">I agree to receive advertising
+                            material</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-2"></label>
+                        <textarea class="form-control" id="message-2" name="message"
+                                  placeholder="Describe the services you need (e.g., windshield repair, etc.)"></textarea>
+                    </div>
+                    <!-- reCAPTCHA widget -->
+                    <div class="mb-3">
+                        <input id="g-recaptcha-response" name="g-recaptcha-response" type="hidden">
+                    </div>
+                    <!-- reCAPTCHA script -->
+                    <script>
+                        grecaptcha.ready(function () {
+                            grecaptcha.execute('{{ site_key }}', {action: 'submit'}).then(function (token) {
+                                document.getElementById('g-recaptcha-response').value = token;
+                            });
+                        });
+                    </script>
+                    <div>
+                        <button class="btn btn-primary d-block w-100" type="submit">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-md bg-body py-3">
+    <div class="container"><a class="navbar-brand d-flex align-items-center h1"><span class="site-title">Got a chip? Don't trip.</span>
+    </a>
+        <button class="navbar-toggler" data-bs-target="#navcol-3" data-bs-toggle="collapse"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-3">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="#mission">Our Mission</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">What We Offer</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pricing">Insurance & Pricing</a></li>
+            </ul>
+            <button class="btn btn-primary fs-5 py-2 px-4" data-bs-target="#contact" data-bs-toggle="modal"
+                    type="button">Schedule
+                Now!
+            </button>
+        </div>
+    </div>
+</nav>
+<div class="container py-4 py-xl-5" id="mission">
+    <div class="row gy-4 gy-md-0">
+        <div class="col-md-6">
+            <div class="p-xl-5 m-xl-5">
+                <img alt="" class="image-container img-fluid d-block mx-auto animated fadeInRightBig fit-cover"
+                     src="../static/img/chipped-out-auto-glass.webp">
+            </div>
+        </div>
+        <div class="col d-md-flex align-items-md-center">
+            <div>
+                <h2 class="fw-bold">We're here to help.</h2>
+                <p class="my-3">Rooted in a steadfast commitment to integrity and propelled by a spirit of constant
+                    innovation, we aim to set the industry standard in delivering top-notch windshield repair solutions.
+                    Our foremost priority is ensuring the safety and peace of mind of each and every customer we serve.
+                    To accomplish this, our <a href="#certifications">certified technicians</a> don't just view their
+                    work as a job, but as a craft. With meticulous attention to detail and an unyielding commitment to
+                    excellence, they treat every repair as if they're working on their own family's vehicle—because when
+                    it comes to your safety on the road, we believe that nothing else should matter.</p>
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-primary me-2" href="#services" role="button">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" id="services">
+    <div class="row mb-5">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <h2>We offer a range of services to meet your automotive needs.</h2>
+            <p class="w-lg-50">Serving the Greater Colorado Springs Area with Mobile Chip Repairs and Replacements (No
+                ADAS Calibration), and the Greater Fort Worth Area with Mobile Chip Repairs.</p>
+        </div>
+    </div>
+    <div class="row g-0">
+        <div class="col">
+            <div class="card service-cards">
+                <div class="card-body">
+                    <h4 class="card-title">Windshield Chips</h4>
+                    <h6 class="text-muted card-subtitle mb-2">
+                        <a href="#pricing">See pricing below</a>
+                    </h6>
+                    <p class="card-text">Quick and effective repair of minor chips to prevent further damage and improve
+                        visual clarity.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card service-cards">
+                <div class="card-body">
+                    <h4 class="card-title">Windshield Cracks</h4>
+                    <h6 class="text-muted card-subtitle mb-2">Contact for pricing</h6>
+                    <p class="card-text">Advanced resin injection techniques to fix cracks in your windshield, restoring
+                        its structural integrity and appearance.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card service-cards">
+                <div class="card-body">
+                    <h4 class="card-title">Sun/Moon Roofs</h4>
+                    <h6 class="text-muted card-subtitle mb-2">Contact for pricing</h6>
+                    <p class="card-text">Expert repair and replacement services for sun and moon roofs, using
+                        high-quality glass for a seamless finish.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card service-cards">
+                <div class="card-body">
+                    <h4 class="card-title">Other Auto Glass</h4>
+                    <h6 class="text-muted card-subtitle mb-2">Contact for pricing</h6>
+                    <p class="card-text">Comprehensive repair and replacement services for side windows, rear windows,
+                        and other specialized auto glass components.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-0">
+        <div class="col-md-3">
+            <div class="card service-cards">
+                <div class="card-body">
+                    <h4 class="card-title">Headlights</h4>
+                    <h6 class="text-muted card-subtitle mb-2">$25/headlight</h6>
+                    <p class="card-text">Effective removal of cloudiness and yellowing from headlights, improving
+                        visibility and vehicle appearance.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card service-cards">
+                <div class="card-body">
+                    <h4 class="card-title">Ceramic Coating</h4>
+                    <h6 class="text-muted card-subtitle mb-2">Coming soon</h6>
+                    <p class="card-text"> Long-lasting ceramic coatings for superior protection against environmental
+                        damage, such as scratches, dirt, and water spots.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card service-cards">
+                <div class="card-body">
+                    <h4 class="card-title">Window Tinting</h4>
+                    <h6 class="text-muted card-subtitle mb-2">Coming soon</h6>
+                    <p class="card-text">Customized tinting solutions to enhance privacy, reduce glare, and improve your
+                        vehicle's aesthetic appeal.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card service-cards">
+                <div class="card-body">
+                    <h4 class="card-title">Auto Detailing</h4>
+                    <h6 class="text-muted card-subtitle mb-2">Coming soon</h6>
+                    <p class="card-text">Comprehensive interior and exterior cleaning and restoration services to make
+                        your car look and feel like new.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container py-4 py-xl-5" id="pricing">
+    <div class="row mb-5">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <h2>You don't have to break the bank over broken glass.</h2>
+            <p class="w-lg-50">The vast majority of insurance providers that offer comprehensive coverage plans will
+                usually cover the full cost of our windshield repair and replacement services.</p>
+        </div>
+    </div>
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-center">
+        <div class="col price-cards">
+            <div class="card mb-4 card-container">
+                <div class="card-body text-center p-4">
+                    <h4 class="fw-bold card-subtitle">Without Insurance</h4>
+                    <h4 class="display-5 fw-bold card-title">$70</h4>
+                    <p class="text-muted">For up to 3 chips</p>
+                </div>
+            </div>
+            <div class="bg-body-tertiary border rounded border-0 p-4">
+                <ul class="list-unstyled">
+                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
+                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                </svg></span><span>Affordable and quick</span></li>
+                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
+                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                </svg></span><span>Expertise you can trust</span></li>
+                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
+                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                </svg></span><span>Quality materials</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col price-cards">
+            <div class="card border-primary border-2 mb-4 card-container">
+                <div class="card-body text-center p-4">
+        <span class="badge rounded-pill bg-primary position-absolute top-0 start-50 translate-middle text-uppercase">
+            Most CUSTOMERS
+        </span>
+                    <h4 class="fw-bold card-subtitle">With Insurance</h4>
+                    <h4 class="display-5 fw-bold card-title">FREE</h4>
+                    <p class="text-muted">With comprehensive coverage<sup>*</sup></p>
+                </div>
+            </div>
+            <div class="bg-body-tertiary border rounded border-0 p-4">
+                <ul class="list-unstyled">
+                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
+                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                </svg></span><span>Zero out-of-pocket costs</span></li>
+                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
+                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                </svg></span><span>Streamlined claims process</span></li>
+                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
+                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                </svg></span><span>Comprehensive warranty</span></li>
+                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
+                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                </svg></span><span>No impact on insurance premiums</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="py-4 py-xl-5">
+    <div class="container">
+        <div class="text-dark bg-light border rounded border-0 border-light d-flex flex-column justify-content-between flex-lg-row p-4 p-md-5">
+            <div class="pb-2 pb-lg-1">
+                <h2 class="fw-bold mb-2">Don't delay. Reach out today.</h2>
+                <p class="mb-0">Chips and cracks can worsen over time—act now before it's too late.</p>
+            </div>
+            <div class="my-2">
+                <button class="btn btn-primary fs-5 py-2 px-4" data-bs-target="#contact" data-bs-toggle="modal"
+                        type="button">Schedule Now!
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container py-4 py-lg-5">
+        <hr>
+        <div class="row justify-content-between">
+            <div class="col-sm-4 col-md-4 text-start text-lg-start d-flex flex-column item add-padding-top"
+                 id="certifications">
+                <h3 class="fs-6">Certifications</h3>
+                <section class="text-muted">
+                    <ul class="list-unstyled">
+                        <li class="d-flex mb-2">
+        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2">
+            <svg class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+            </svg>
+        </span>
+                            <span>Endorsed by the Auto Glass Safety Committee (AGSC)</span>
+                        </li>
+                        <li class="d-flex mb-2">
+        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2">
+            <svg class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+            </svg>
+        </span>
+                            <span>Globally accredited by the Auto Glass Academy</span>
+                        </li>
+                        <li class="d-flex mb-2">
+        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2">
+            <svg class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+            </svg>
+        </span>
+                            <span>Completed SIKA AGR Technician Training Course</span>
+                        </li>
+                    </ul>
+
+                </section>
+            </div>
+            <div class="col-sm-4 col-md-4 text-start text-lg-start d-flex flex-column item add-padding-top">
+                <h3 class="fs-6">Warranty</h3>
+                <section class="text-muted">
+                    We back our workmanship with a 90-day warranty. If your repair either fails or develops into a
+                    larger, non-repairable crack, we pledge to credit the entire amount you originally paid—be it
+                    out-of-pocket or through insurance—toward the expense of a full glass replacement carried out by our
+                    skilled technicians.
+                </section>
+            </div>
+            <div class="col-sm-4 col-md-4 text-start text-lg-start d-flex flex-column item add-padding-top">
+                <h3 class="fs-6">Footnotes</h3>
+                <aside class="text-muted">
+                    <p><sup>*</sup> If you are insured by Safeway, The General, Fred Loya, or State Farm, please
+                        note that our services operate strictly on a reimbursement-only model. You will need to pay for
+                        the services in advance, after which we will furnish you with an invoice. This invoice can be
+                        presented to your local insurance agent or company for reimbursement.
+                    </p>
+                </aside>
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex flex-column align-items-center text-center pt-3">
+            <p class="text-muted mb-0">Made with <i class="fas fa-heart pulse animated infinite"></i>
+                by Joseph Julian</p>
+            <p class="text-muted add-padding-top">Copyright © 2023 Chipped Out Auto Glass</p>
+        </div>
+    </div>
+</footer>
+<a href="#" id="scroll-to-top" title="Scroll to top"><i class="fas fa-angle-up"></i></a>
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bs-init.js') }}"></script>
+<script src="{{ url_for('static', filename='js/flash-message.js') }}"></script>
+<script src="{{ url_for('static', filename='js/broken-glass.js') }}"></script>
+<script src="{{ url_for('static', filename='js/scroll-to-top.js') }}"></script>
+<script src="{{ url_for('static', filename='js/service-cards.js') }}"></script>
+</body>
+</html>

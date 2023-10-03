@@ -1,0 +1,7 @@
+.image-container {
+    border-radius: 4px;
+    width: 100% !important;
+    height: 30vh !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}

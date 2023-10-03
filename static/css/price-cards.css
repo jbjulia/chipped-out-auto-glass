@@ -1,0 +1,25 @@
+/* Price Cards */
+.price-cards {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to top right, #f2f8f9, #ffffff);
+    padding-bottom: 25px;
+    border-radius: 5px;
+}
+
+.price-cards:hover {
+    transform: translateY(-5px) rotate(-1deg);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom left, #f2f8f9, #ffffff);
+}
+
+/* Override Bootstrap's Primary Border */
+.card.border-primary {
+    border-color: #D33802 !important;
+}
+
+/* Orange Badge */
+.badge.bg-primary {
+    background-color: #D33802 !important;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
