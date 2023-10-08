@@ -1,0 +1,356 @@
+/* service-cards.css */
+.service-cards {
+    position: relative;
+    width: 92%;
+    min-height: 275px;
+    margin: 12px;
+    padding: 32px 24px;
+    background-color: #f2f8f9;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    z-index: 0;
+    transition: all 0.3s ease-out, transform 0.3s ease-in-out;
+}
+
+.service-cards h3, .service-cards p {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease-in-out;
+}
+
+.service-cards:hover {
+    transform: scale(1.05);
+}
+
+.service-cards:hover:before {
+    transform: scale(1);
+}
+
+.service-cards:hover h3, .service-cards:hover p {
+    transform: scale(1.1);
+    color: #FFF;
+}
+
+.service-cards:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #D33802, #ff6e40);
+    transform: scale(0);
+    transform-origin: center;
+    transition: transform 0.25s ease-out;
+}
+
+.service-cards:hover, .service-cards.scrolled-over {
+    transform: scale(1.05);
+}
+
+.service-cards:hover:before, .service-cards.scrolled-over:before {
+    transform: scale(1);
+}
+
+.service-cards:hover h3, .service-cards.scrolled-over h3, .service-cards:hover p, .service-cards.scrolled-over p {
+    transform: scale(1.1);
+    color: #FFF;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #221F1E;
+}
+
+.card-subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 16px;
+    color: #221F1E;
+}
+
+.text-muted.card-subtitle.mb-2 a {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.text-muted.card-subtitle.mb-2 a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.card-text {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #221F1E;
+}
+
+.service-cards.show {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* scroll-to-top.css */
+html {
+    scroll-behavior: smooth;
+}
+
+#scroll-to-top {
+    background-color: #ADD8E6;
+    width: 44px;
+    height: 40px;
+    position: fixed;
+    bottom: 80px;
+    right: 25px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+#scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#scroll-to-top i {
+    color: #fff;
+    font-size: 22px;
+    line-height: 44px;
+}
+
+/* price-cards.css */
+.price-cards {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to top right, #f2f8f9, #ffffff);
+    padding-bottom: 25px;
+    border-radius: 5px;
+}
+
+.price-cards:hover {
+    transform: translateY(-5px) rotate(-1deg);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom left, #f2f8f9, #ffffff);
+}
+
+.card.border-primary {
+    border-color: #D33802 !important;
+}
+
+.badge.bg-primary {
+    background-color: #D33802 !important;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* navbar.css */
+.site-title {
+    font-size: 2.4rem;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.site-title:hover {
+    transform: scale(1.05);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* icons.css */
+.bi.bi-check-lg {
+    fill: #D33802 !important;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+}
+
+p.mb-0 i.fas.fa-heart.pulse.animated.infinite {
+    animation: pulse 1.5s infinite;
+    color: red !important;
+    padding: 0 5px;
+}
+
+/* hero.css */
+.image-container {
+    border-radius: 4px;
+    width: 100% !important;
+    height: 30vh !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* headings.css */
+h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+    position: relative;
+    text-align: center;
+}
+
+h2::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 75px;
+    height: 4px;
+    background-color: #D33802;
+    transform: translateX(-50%);
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+.my-3 {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.my-3 a {
+    text-decoration: none;
+    color: #D33802;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.my-3 a:hover {
+    color: #A12A01;
+    border-bottom: 2px solid #D33802;
+}
+
+/* footer.css */
+.add-padding-top {
+    padding-top: 15px;
+}
+
+/* flash-message.css */
+.flash-messages {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    color: white;
+}
+
+.flash-messages.success {
+    border: 1px solid #4CAF50;
+    background-color: #4CAF50;
+}
+
+.flash-messages.error {
+    border: 1px solid #AF4C50;
+    background-color: #AF4C50;
+}
+
+.flash-message {
+    margin: 5px 0;
+    padding: 8px 12px;
+}
+
+/* contact-form.css */
+.form-check-input:checked {
+    background-color: #D33802 !important;
+    border-color: #D33802 !important;
+}
+
+/* buttons.css */
+.btn.btn-primary {
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #FFF;
+    border: solid 1px #FFF;
+    border-radius: 4px;
+    background-color: #D33802;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn.btn-primary:hover {
+    background-color: #FFF;
+    border-color: #D33802;
+    color: #221F1E;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn.btn-primary:active {
+    background-color: #FF7700;
+    border-color: #FFF;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    outline: none;
+}
+
+.btn.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem orange;
+}
+
+.btn.btn-outline-primary {
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #221F1E;
+    border: solid 1px #D33802;
+    border-radius: 4px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn.btn-outline-primary:hover {
+    background-color: #D33802;
+    color: #FFF;
+    border-color: #FFF;
+}
+
+.btn.btn-outline-primary:active {
+    background-color: #FF7700;
+    color: #FFF;
+    border-color: orange;
+    outline: none;
+}
+
+.btn.btn-outline-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem orange;
+}
+
+/* broken-glass.css */
+#brokenGlassContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 5s ease;
+}
+
+#brokenGlassCanvas {
+    width: 100%;
+    height: 100%;
+}

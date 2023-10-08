@@ -50,14 +50,14 @@ def form_submit():
 
     # Get form fields
     name = request.form.get("name")
-    user_email = request.form.get("email")
     state = request.form.get("state")
     license_plate = request.form.get("license-plate")
-    message = request.form.get("message")
+    user_email = request.form.get("email")
     phone_number = request.form.get("phone-number")
     allow_advertising = (
         request.form.get("allow-advertising") == "on"
     )  # Checkbox returns "on" if checked
+    message = request.form.get("message")
 
     # Search for license plate
     vehicle_info = license_plate_search(license_plate, state)

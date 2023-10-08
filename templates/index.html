@@ -20,18 +20,8 @@
         }
     </script>
     <script src="https://www.google.com/recaptcha/api.js?render={{ site_key }}"></script>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/broken-glass.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/buttons.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/flash-message.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/footer.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/headings.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/hero.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/icons.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/navbar.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/price-cards.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/scroll-to-top.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/service-cards.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='fonts/fontawesome-all.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='img/chipped-out-auto-glass.webp') }}" rel="stylesheet">
@@ -54,19 +44,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Cracked today, clear tomorrow.</h4>
+                <!--<h4 class="modal-title">Cracked today, clear tomorrow.</h4>-->
                 <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
             </div>
             <div class="modal-body">
-                <p class="text-center text-muted">Please allow us 2-3 business days to respond.</p>
+                <h4 class="modal-title">Cracked today, clear tomorrow.</h4>
+                <!--<p class="text-center text-muted">Please allow us 2-3 business days to respond.</p>-->
                 <form action="/form" method="post">
                     <div class="mb-3">
                         <label for="name-2"></label>
                         <input class="form-control" id="name-2" name="name" placeholder="Name" type="text">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email-2"></label>
-                        <input class="form-control" id="email-2" name="email" placeholder="Email" type="email">
                     </div>
                     <div class="mb-3">
                         <label for="state-2"></label>
@@ -82,9 +69,14 @@
                         <input class="form-control" id="phone-number" name="phone-number" placeholder="Phone Number"
                                type="tel">
                     </div>
+                    <div class="mb-3">
+                        <label for="email-2"></label>
+                        <input class="form-control" id="email-2" name="email" placeholder="Email" type="email">
+                    </div>
                     <div class="mb-3 form-check">
                         <input class="form-check-input" id="allow-advertising" name="allow-advertising" type="checkbox">
-                        <label class="form-check-label" for="allow-advertising">I consent to receiving promotional
+                        <label class="form-check-label text-muted" for="allow-advertising">I consent to receiving
+                            promotional
                             content.</label>
                     </div>
                     <div class="mb-3">
@@ -259,34 +251,7 @@
         </div>
     </div>
     <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex justify-content-center">
-        <div class="col price-cards">
-            <div class="card mb-4 card-container">
-                <div class="card-body text-center p-4">
-                    <h4 class="fw-bold card-subtitle">Without Insurance</h4>
-                    <h4 class="display-5 fw-bold card-title">$70</h4>
-                    <p class="text-muted">For up to 3 chips</p>
-                </div>
-            </div>
-            <div class="bg-body-tertiary border rounded border-0 p-4">
-                <ul class="list-unstyled">
-                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
-                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
-                            width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
-                                </svg></span><span>Affordable and quick</span></li>
-                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
-                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
-                            width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
-                                </svg></span><span>Expertise you can trust</span></li>
-                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
-                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
-                            width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
-                                </svg></span><span>Quality materials</span></li>
-                </ul>
-            </div>
-        </div>
+
         <div class="col price-cards">
             <div class="card border-primary border-2 mb-4 card-container">
                 <div class="card-body text-center p-4">
@@ -320,6 +285,34 @@
                             width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
                                 </svg></span><span>No impact on insurance premiums</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col price-cards">
+            <div class="card mb-4 card-container">
+                <div class="card-body text-center p-4">
+                    <h4 class="fw-bold card-subtitle">Without Insurance</h4>
+                    <h4 class="display-5 fw-bold card-title">$70</h4>
+                    <p class="text-muted">For up to 3 chips</p>
+                </div>
+            </div>
+            <div class="bg-body-tertiary border rounded border-0 p-4">
+                <ul class="list-unstyled">
+                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
+                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                </svg></span><span>Affordable and quick</span></li>
+                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
+                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                </svg></span><span>Expertise you can trust</span></li>
+                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2"><svg
+                            class="bi bi-check-lg" fill="currentColor" height="1em" viewBox="0 0 16 16"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                </svg></span><span>Quality materials</span></li>
                 </ul>
             </div>
         </div>
